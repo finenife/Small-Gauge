@@ -8,7 +8,7 @@
 - ESP-IDF CAN (TWAI) Library documentation
 https://docs.espressif.com/projects/esp-idf/en/stable/esp32s2/api-reference/peripherals/twai.html
 
-- 
+- RejsaCAN-ESP32 https://github.com/MagnusThome/RejsaCAN-ESP32
 
 - ST77903 ESP Library
 https://github.com/moononournation/Arduino_GFX/issues/395
