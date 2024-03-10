@@ -11,4 +11,5 @@ https://docs.espressif.com/projects/esp-idf/en/stable/esp32s2/api-reference/peri
 - 
 
 - ST77903 ESP Library
+https://github.com/moononournation/Arduino_GFX/issues/395
 
