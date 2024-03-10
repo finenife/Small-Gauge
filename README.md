@@ -2,10 +2,10 @@
  Open Source replacement for the Mazda Miata Oil Pressure Gauge 
 
 
-# some small notes for myself of other repos ill be referencing
+## some small notes for myself of other repos ill be referencing
 - ill likely move this away from a mono repo at some point
 
-Screen - ST77903 - 1.6 Inch TFT Display  LCD MODULE Circular Display 400x400 ST77903 Driver Quad-SPI Interface 14Pins
+- Screen - ST77903 - 1.6 Inch TFT Display  LCD MODULE Circular Display 400x400 ST77903 Driver Quad-SPI Interface 14Pins
 https://a.aliexpress.com/_mM0T8uA
 
 - LVGL - https://lvgl.io/
