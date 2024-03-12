@@ -1,0 +1,78 @@
+menu "Board Support Package"
+    menu "LCD"
+        config BSP_LCD_BUFFER_NUMS
+            int "Set number of frame buffers"
+            default 1
+            range 1 3
+            help
+                Let LCD driver create a specified number of frame-size buffers. Only when it is set to multiple can the avoiding tearing be turned on.
+
+        config BSP_LCD_EXPECT_FPS
+            int "Excepted FPS of LCD"
+            default 45
+            range 0 100
+    endmenu
+
+    menu "Display"
+        config BSP_DISPLAY_LVGL_TASK_PRIORITY
+            int "LVGL task priority"
+            default 2
+            help
+                The Board Support Package will create a task that will periodically handle LVGL operation in lv_timer_handler().
+
+        config BSP_DISPLAY_LVGL_TASK_DELAY
+            int "LVGL task minimum delay time (ms)"
+            default 10
+            range 1 100
+            help
+                Minimum delay time for LVGL task. It should be larger if the task watchdog is triggered frequently.
+
+        config BSP_DISPLAY_LVGL_TASK_STACK_SIZE
+            int "LVGL task stack size (KB)"
+            default 4
+            help
+                Size(KB) of LVGL task stack.
+
+        config BSP_DISPLAY_LVGL_TICK
+            int "LVGL tick period"
+            default 5
+            range 1 100
+            help
+                Period of LVGL tick timer.
+
+        config BSP_DISPLAY_LVGL_AVOID_TEAR
+            bool "Avoid tearing effect"
+            depends on BSP_LCD_BUFFER_NUMS > 1
+            depends on !BSP_LCD_COLOR_SPACE_RGB888
+            default "n"
+            help
+                Avoid tearing effect through LVGL buffer mode and double frame buffers of LCD. This feature is only available for LCD.
+
+        choice BSP_DISPLAY_LVGL_MODE
+            depends on BSP_DISPLAY_LVGL_AVOID_TEAR
+            prompt "Select LVGL buffer mode"
+            default BSP_DISPLAY_LVGL_FULL_REFRESH
+            config BSP_DISPLAY_LVGL_FULL_REFRESH
+                bool "Full refresh"
+            config BSP_DISPLAY_LVGL_DIRECT_MODE
+                bool "Direct mode"
+        endchoice
+
+        choice BSP_DISPLAY_LVGL_BUF_CAPS
+            depends on !BSP_DISPLAY_LVGL_AVOID_TEAR
+            prompt "Select LVGL buffer memory capability"
+            default BSP_DISPLAY_LVGL_INTERNAL
+            config BSP_DISPLAY_LVGL_PSRAM
+                bool "PSRAM memory"
+            config BSP_DISPLAY_LVGL_INTERNAL
+                bool "Internal memory"
+        endchoice
+
+        config BSP_DISPLAY_LVGL_BUF_HEIGHT
+            depends on !BSP_DISPLAY_LVGL_AVOID_TEAR
+            int "LVGL buffer height"
+            default 50
+            help
+                Height of LVGL buffer. The width of the buffer is the same as that of the LCD.
+    endmenu
+endmenu
