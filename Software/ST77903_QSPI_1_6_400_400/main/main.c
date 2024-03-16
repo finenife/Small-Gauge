@@ -15,19 +15,17 @@
 
 #include "lv_port.h"
 
+
 #define LOG_SYSTEM_INFO    (0)
-#define LV_USE_PERF_MONITOR 0
 #define LV_IMG_DECLARE(var_name) extern const lv_img_dsc_t var_name;
 
 static const char *TAG = "app_main";
 
-//static esp_err_t print_real_time_stats(TickType_t xTicksToWait);
+static esp_err_t print_real_time_stats(TickType_t xTicksToWait);
 
 static void set_angle(void * img, int32_t v)
 {
-
-    lv_img_set_angle(img, v);
-    
+    lv_img_set_angle(img, v);   
 }
 
 void lv_example_image_1(void)
@@ -41,7 +39,8 @@ void lv_example_image_1(void)
     LV_IMG_DECLARE(MovingNeedle);
     lv_obj_t * img2 = lv_img_create(lv_scr_act());
     lv_img_set_src(img2, &MovingNeedle);
-    lv_obj_align(img2, LV_ALIGN_CENTER, 5, 60);
+    lv_img_set_antialias(img2, true);
+    lv_obj_align(img2, LV_ALIGN_CENTER, 0, 50);
     lv_img_set_pivot(img2, 200, 200);
 
     lv_anim_t a;
@@ -49,7 +48,7 @@ void lv_example_image_1(void)
     lv_anim_set_var(&a, img2);
     lv_anim_set_exec_cb(&a, set_angle);
     lv_anim_set_values(&a, 0, 760);
-    lv_anim_set_time(&a, 10000);
+    lv_anim_set_time(&a, 5000);
     lv_anim_path_linear(&a);
     //lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
     lv_anim_start(&a);
