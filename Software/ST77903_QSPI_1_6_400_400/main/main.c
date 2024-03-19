@@ -40,15 +40,15 @@ void lv_example_image_1(void)
     lv_obj_t * img2 = lv_img_create(lv_scr_act());
     lv_img_set_src(img2, &MovingNeedle);
     lv_img_set_antialias(img2, true);
-    lv_obj_align(img2, LV_ALIGN_CENTER, 0, 50);
-    lv_img_set_pivot(img2, 200, 200);
+    lv_obj_align(img2, LV_ALIGN_CENTER, -30, 10);
+    lv_img_set_pivot(img2, 136, 190);
 
     lv_anim_t a;
     lv_anim_init(&a);
     lv_anim_set_var(&a, img2);
     lv_anim_set_exec_cb(&a, set_angle);
-    lv_anim_set_values(&a, 0, 760);
-    lv_anim_set_time(&a, 5000);
+    lv_anim_set_values(&a, 0, 720);
+    lv_anim_set_time(&a, 10000);
     lv_anim_path_linear(&a);
     //lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
     lv_anim_start(&a);
